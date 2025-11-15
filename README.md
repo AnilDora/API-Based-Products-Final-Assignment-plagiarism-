@@ -26,7 +26,7 @@ streamlit run app.py
 
 Open http://localhost:8501
 
-### Option 2: API Version
+### Option 2: API Version (Direct Flask)
 
 Terminal 1:
 cd plagiarism_app/flask_api
@@ -40,6 +40,30 @@ streamlit run app.py
 
 API: http://localhost:5000
 Frontend: http://localhost:8501
+
+### Option 3: API Version with Kong Gateway
+
+Requires Docker Desktop installed.
+
+cd plagiarism_app
+.\start_kong.ps1
+
+This starts:
+- Flask API on port 5000
+- Kong Gateway on port 8000
+- Kong Admin on port 8001
+
+Kong Features:
+- Rate Limiting: 100 requests per minute, 1000 per hour
+- Request Size Limit: 10MB maximum
+
+Access API through Kong: http://localhost:8000
+Streamlit frontend: http://localhost:8501
+
+In Streamlit, check "Use Kong API Gateway" to route through Kong.
+
+To stop Kong:
+.\stop_kong.ps1
 
 ## Technologies Used
 

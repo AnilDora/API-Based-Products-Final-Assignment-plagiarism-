@@ -1,0 +1,19 @@
+_format_version: "3.0"
+
+services:
+  - name: plagiarism-api
+    url: http://flask-api:5000
+    routes:
+      - name: plagiarism-route
+        paths:
+          - /
+        strip_path: false
+    plugins:
+      - name: rate-limiting
+        config:
+          minute: 100
+          hour: 1000
+          policy: local
+      - name: request-size-limiting
+        config:
+          allowed_payload_size: 10

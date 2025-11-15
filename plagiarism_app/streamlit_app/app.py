@@ -6,12 +6,22 @@ st.set_page_config(page_title="Plagiarism Checker", layout="wide")
 st.title("Plagiarism Checker")
 st.write("Upload two files")
 
-API_URL = "http://localhost:5000/check"
+use_kong = st.checkbox("Use Kong API Gateway", value=False)
+
+if use_kong:
+    API_URL = "http://localhost:8000/check"
+    health_url = "http://localhost:8000/health"
+else:
+    API_URL = "http://localhost:5000/check"
+    health_url = "http://localhost:5000/health"
 
 try:
-    res = requests.get("http://localhost:5000/health", timeout=1)
+    res = requests.get(health_url, timeout=1)
     if res.status_code == 200:
-        st.success("API connected")
+        if use_kong:
+            st.success("API connected via Kong Gateway")
+        else:
+            st.success("API connected")
 except:
     st.error("API not running")
 
@@ -78,8 +88,10 @@ if file1 and file2:
                     
                     s1.write(f"Chars: {stats1['characters']}, Words: {stats1['words']}")
                     s2.write(f"Chars: {stats2['characters']}, Words: {stats2['words']}")
+            elif res.status_code == 429:
+                st.error("Rate limit exceeded. Please wait and try again.")
             else:
-                st.error("Error")
+                st.error(f"Error: {res.status_code}")
                 
         except Exception as e:
             st.error(f"Error: {e}")
