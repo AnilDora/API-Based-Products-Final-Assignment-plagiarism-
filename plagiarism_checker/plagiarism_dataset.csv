@@ -1,0 +1,13 @@
+Original,Submission,Similarity,Label
+This is the original sentence.,This is the original sentence.,1.0000000000000002,1
+The sky is blue and beautiful.,The sky is blue.,0.7092972666062738,1
+Machine learning is fun.,I like pizza.,0.0,0
+Python is a great language.,I use Java for backend.,0.0,0
+Artificial intelligence is transforming technology.,AI is changing tech.,0.1273595297947935,1
+Climate change is a global challenge.,Weather patterns are shifting worldwide.,0.0,1
+The cat sat on the mat.,Dogs are loyal pets.,0.0,0
+Data science requires statistical knowledge.,Statistics is important for data analysis.,0.10163066979112656,1
+The sun rises in the east.,The sun rises in the east every morning.,0.8181802073667199,1
+Coffee is a popular beverage.,Tea is consumed worldwide.,0.1443835552773867,0
+Programming requires logical thinking.,Coding needs problem-solving skills.,0.0,1
+The ocean is vast and deep.,Mountains are tall and majestic.,0.10163066979112656,0
